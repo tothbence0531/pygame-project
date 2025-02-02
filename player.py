@@ -35,7 +35,7 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_d]:
             self.move_x += 1
 
-        """#NOT WORKING----------------------------------------
+        """#TODO----------------------------------------
         # Normalizing the movement placement
             
         if self.move_x != 0 and self.move_y != 0:
