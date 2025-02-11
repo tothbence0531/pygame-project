@@ -35,32 +35,23 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_d]:
             self.move_x += 1
 
-        """#NOT WORKING----------------------------------------
         # Normalizing the movement placement
             
         if self.move_x != 0 and self.move_y != 0:
             magnitude = math.sqrt(self.move_x ** 2 + self.move_y ** 2)
             self.move_x /= magnitude
-            self.move_y /= magnitude"""
+            self.move_y /= magnitude
 
     def update(self):
         self.move()
         # Updating the player's position
-        if 0 < self.rect.x + self.move_x * self.speed < self.game.screen.get_width() - TILESIZE:
-            #self.rect.x += self.move_x * self.speed
-
-            for sprite in self.game.all_sprites:
-                if sprite is not self:
-                    sprite.rect.x -= self.move_x * self.speed
+        if 0 < self.rect.x + self.move_x * self.speed:
+            self.rect.x += self.move_x * self.speed
 
             self.collide_with_objects('x')
 
-        if 0 < self.rect.y + self.move_y * self.speed < self.game.screen.get_height() - TILESIZE:
-            #self.rect.y += self.move_y * self.speed
-
-            for sprite in self.game.all_sprites:
-                if sprite is not self:
-                    sprite.rect.y -= self.move_y * self.speed
+        if 0 < self.rect.y + self.move_y * self.speed:
+            self.rect.y += self.move_y * self.speed
 
             self.collide_with_objects('y')
 

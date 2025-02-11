@@ -9,13 +9,12 @@ pygame.init()
 class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        self.all_sprites = pygame.sprite.LayeredUpdates()
+        self.all_sprites = Camera()
         self.terrain = pygame.sprite.LayeredUpdates()
         self.enemies = pygame.sprite.LayeredUpdates()
         self.running = True
         self.clock = pygame.time.Clock()
         self.create_tilemap()
-        self.player = Player(self, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     def create_tilemap(self):
 
@@ -37,8 +36,8 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
 
+            self.all_sprites.custom_draw(self.player)
             self.all_sprites.update()
-            self.all_sprites.draw(self.screen)
 
             pygame.display.flip()
 
