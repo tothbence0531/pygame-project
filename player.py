@@ -49,11 +49,13 @@ class Player(pygame.sprite.Sprite):
             self.rect.x += self.move_x * self.speed
 
             self.collide_with_objects('x')
+            self.collide_with_enemies('x')
 
         if 0 < self.rect.y + self.move_y * self.speed:
             self.rect.y += self.move_y * self.speed
 
             self.collide_with_objects('y')
+            self.collide_with_enemies('y')
 
         self.move_x, self.move_y = 0, 0
 
@@ -68,6 +70,8 @@ class Player(pygame.sprite.Sprite):
                 if self.move_y > 0: self.rect.y = hits[0].rect.top - self.rect.height
                 elif self.move_y < 0: self.rect.y = hits[0].rect.bottom
 
-
-
-    """def collide_with_enemies"""
+    def collide_with_enemies(self, direction):
+        hits = pygame.sprite.spritecollide(self, self.game.enemies, False)
+        if hits:
+            print(hits)
+            self.game.screen.fill(BLACK)

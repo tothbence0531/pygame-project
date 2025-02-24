@@ -3,11 +3,13 @@ from player import *
 from terrain import *
 from config import *
 from camera import *
+from enemy import *
 
 pygame.init()
 
 class Game:
     def __init__(self):
+        self.player = None
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.all_sprites = Camera()
         self.terrain = pygame.sprite.LayeredUpdates()
@@ -24,6 +26,8 @@ class Game:
                     Terrain(self, j, i)
                 if column == "P":
                     self.player = Player(self, j, i)
+                if column == "E":
+                    Enemy(self, j, i)
 
     def loop(self):
 
