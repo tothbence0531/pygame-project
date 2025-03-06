@@ -74,4 +74,5 @@ class Player(pygame.sprite.Sprite):
         hits = pygame.sprite.spritecollide(self, self.game.enemies, False)
         if hits:
             print(hits)
-            self.game.screen.fill(BLACK)
+            #self.game.screen.fill(BLACK)
+            self.game.stateManager.set_state("fight")
